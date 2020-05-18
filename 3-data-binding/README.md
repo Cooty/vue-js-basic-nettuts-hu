@@ -1,0 +1,1 @@
+https://nettuts.hu/blog/vue-alapozo-adatkotes
