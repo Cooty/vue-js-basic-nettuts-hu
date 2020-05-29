@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css" media="all">
+    <title>Bevásárló lista</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="./app.js" defer></script>
+</head>
+<body>
+    <div id="shopping-list">
+        <div class="header">
+            <h1>{{header.toLocaleUpperCase()}}</h1>
+            <button class="btn btn-primary"
+                    v-if="state === 'default'"
+                    v-on:click="changeState('add')">
+                Lista szerkesztése
+            </button>
+            <button class="btn btn-cancel"
+                    v-else
+                    v-on:click="changeState('default')">
+                Mégse
+            </button>
+        </div>
+        <div class="add-item-form" v-if="state === 'add'">
+            <input v-model="newItem"
+                   type="text"
+                   placeholder="Mit kell venni?"
+                   ref="itemInput"
+                   v-on:keyup.enter="addItem" />
+            <button type="button"
+                    class="btn btn-primary"
+                    v-on:click="addItem">
+                Hozzáadás
+            </button>
+        </div>
+        <ul>
+            <li v-for="item in items">
+                {{ item.label }}
+            <li>
+        </ul>
+    </div>
+</body>
+</html>
